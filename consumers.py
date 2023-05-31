@@ -18,10 +18,10 @@ def start_delivery(state,event):
 
 def pickup_products(state,event):
     data=json.loads(event.data)
-    new_budget=state['budget']-int(data["puchase_price"]) *int(data["quantity"])
+    new_budget=state['budget']-int(data["purchase_price"]) *int(data["quantity"])
     if new_budget<0:
         raise HTTPException(400,"Not enogh budget exist. Raise the budget")
-    return state |{"budget":new_budget,"purchase_price":int(data["puchase_price"]),"quantity":int(data["quantity"]),"status":"collected"}
+    return state |{"budget":new_budget,"purchase_price":int(data["purchase_price"]),"quantity":int(data["quantity"]),"status":"collected"}
 
 def deliver_products(state,event):
     data=json.loads(event.data)
@@ -39,7 +39,7 @@ def increase_budget(state,event):
 CONSUMERS={
     "CREATE_DELIVERY":create_delivery,
     "START_DELIVERY":start_delivery,
-    "PICKUP_PRODUCT":pickup_products,
+    "PICKUP_PRODUCTS":pickup_products,
     "DELIVER_PRODUCTS":deliver_products,
     "INCREASE_BUDGET":increase_budget
 }

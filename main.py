@@ -7,8 +7,12 @@ app=FastAPI()
 
 
 
+origins = [
+    "http://localhost:3000",
+    "localhost:3000",
+    "https://localhost:3000",
+]
 
-origins = ["localhost:3000"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -18,7 +22,11 @@ app.add_middleware(
 )
 
 
-redis=
+redis=get_redis_connection(
+    
+                            )
+
+
 
 class Delivery(HashModel):
     budget:int=0
